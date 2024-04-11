@@ -18,13 +18,13 @@ app = Flask(__name__)
 bcrypt = Bcrypt(app)
 
 CORS(app)
-username = 'm5002_smartbin'
-password = 'Smartbin12'
-hostname = 'mysql0.serv00.com'
-database_name = 'm5002_smartbin_api'
+username = 'smartbin_hurtwishbe'
+password = '4d5a590eb08fe91a2ec769db7a4189b796c9930c'
+hostname = '477.h.filess.io:3305'
+database_name = 'smartbin_hurtwishbe'
 
 # Define environment variables
-DATABASE_URL = f"mysql+pymysql://{username}:{password}@{hostname}/{database_name}"
+DATABASE_URL = f'mariadb://{username}:{password}@{hostname}/{database_name}"
 SECRET_KEY = 'Maha0508@#$'
 
 # Set the upload folder and allowed extensions for uploaded files
