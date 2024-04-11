@@ -13,10 +13,10 @@ import io
 import openpyxl
 import mysql.connector
 from mysql.connector import Error
-from decouple import config
 from flask_sqlalchemy import SQLAlchemy
 import network
 import time
+import os
 
 
 app = Flask(__name__)
@@ -24,13 +24,17 @@ bcrypt = Bcrypt(app)
 
 CORS(app)
 
-DATABASE_URL = config('DATABASE_URL')
-APP_NAME = config('APP_NAME')
+# Define environment variables
+DATABASE_URL=mysql+pymysql://root@localhost/smartbin_api
+APP_NAME=SMARTBIN
+DEVELOPER=JANARTHANAN
+SECRET_KEY=Maha0508@#$
+
 
 # Define the database URI
 app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SECRET_KEY'] = '@#$Mahi2607@#$'
+app.config['SECRET_KEY'] = SECRET_KEY
 
 # Set the upload folder and allowed extensions for uploaded files
 app.config['UPLOAD_FOLDER'] = 'uploads'
