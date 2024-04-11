@@ -133,7 +133,8 @@ def before_request():
 
 @app.route('/',endpoint='index')
 def index():
-    return jsonify({"message": "Welcome to SmartBin API"})
+    
+    return jsonify({"message": "Welcome to SmartBin API","dburi":DATABASE_URL})
 
 @app.route('/login', methods=['POST'],endpoint='login')
 def login_user():
