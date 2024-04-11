@@ -24,7 +24,7 @@ hostname = '477.h.filess.io:3305'
 database_name = 'smartbin_hurtwishbe'
 
 # Define environment variables
-DATABASE_URL = f'mariadb://{username}:{password}@{hostname}/{database_name}"
+DATABASE_URL = f"mysql+pymysql://{username}:{password}@{hostname}/{database_name}"
 SECRET_KEY = 'Maha0508@#$'
 
 # Set the upload folder and allowed extensions for uploaded files
