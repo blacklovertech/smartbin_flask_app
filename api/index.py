@@ -38,6 +38,7 @@ app.config['SECRET_KEY'] = SECRET_KEY
 app.config['UPLOAD_FOLDER'] = 'uploads'
 app.config['ALLOWED_EXTENSIONS'] = {'xlsx'}
 
+db = SQLAlchemy(app)
 
 # Initialize the SQLAlchemy db object with the Flask app
 db.init_app(app)
