@@ -18,8 +18,8 @@ app = Flask(__name__)
 bcrypt = Bcrypt(app)
 
 CORS(app)
-username = 'm5002'
-password = 'Maha0508@#'
+username = 'm5002_smartbin'
+password = 'Smartbin@12'
 hostname = 'mysql0.serv00.com'
 database_name = 'm5002_smartbin_api'
 
