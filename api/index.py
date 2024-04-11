@@ -7,7 +7,7 @@ import pandas as pd
 from sqlalchemy.orm import joinedload
 from sqlalchemy import func, and_,desc
 from flask_bcrypt import Bcrypt
-from model import *
+import model
 import secrets
 from werkzeug.utils import secure_filename
 import io
@@ -491,4 +491,4 @@ def create_database():
 
 
 if __name__ == '__main__':
-    app.run(debug=True,host='0.0.0.0',port=5400)
+    app.run(debug=True,host='0.0.0.0')
