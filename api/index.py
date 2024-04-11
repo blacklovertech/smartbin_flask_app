@@ -517,12 +517,15 @@ def get_binlogs_by_binid(binid):
 
     return jsonify(binlog_list)
 
-
-@app.route('/create_database', methods=['GET'],endpoint='createdb')
+@app.route('/create_database', methods=['GET'], endpoint='createdb')
 def create_database():
     # Create the database and tables
     with app.app_context():
         db.create_all()
+    
+    # Return a simple response
+    return jsonify({'message': 'Database created successfully'}), 200
+
 
 if __name__ == '__main__':
     app.run(debug=True,host='0.0.0.0')
