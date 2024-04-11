@@ -522,10 +522,6 @@ def create_database():
     # Create the database and tables
     with app.app_context():
         db.create_all()
-@app.route('/cred', methods=['GET'],endpoint='cred')
-def cred():
-    return json{
-        DATABASE_URL
-    }
+
 if __name__ == '__main__':
     app.run(debug=True,host='0.0.0.0')
