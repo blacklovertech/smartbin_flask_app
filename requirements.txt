@@ -11,7 +11,3 @@ mysql-connector-python
 decouple
 flask_login
 flask_marshmallow
-csv
-datetime
-os
-io
