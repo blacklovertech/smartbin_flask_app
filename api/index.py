@@ -1,13 +1,12 @@
 import csv
 from datetime import datetime, timedelta
 import os
-from flask import abort, app,Flask, render_template, send_file, request, jsonify, send_from_directory,Blueprint,session
+from flask import Flask, render_template, send_file, request, jsonify, send_from_directory, Blueprint, session
 from flask_cors import CORS
 import pandas as pd
-from sqlalchemy.orm import joinedload,relationship
-from sqlalchemy import func, and_,desc
+from sqlalchemy.orm import joinedload, relationship
+from sqlalchemy import func, and_, desc
 from flask_bcrypt import Bcrypt
-import secrets
 from werkzeug.utils import secure_filename
 import io
 import openpyxl
@@ -15,34 +14,26 @@ import mysql.connector
 from mysql.connector import Error
 from flask_sqlalchemy import SQLAlchemy
 
-
-
 app = Flask(__name__)
 bcrypt = Bcrypt(app)
 
 CORS(app)
 
 # Define environment variables
-DATABASE_URL='mysql+pymysql://root@localhost/smartbin_api'
-APP_NAME='SMARTBIN'
-DEVELOPER='JANARTHANAN'
-SECRET_KEY='Maha0508@#$'
+DATABASE_URL = 'mysql+pymysql://root@localhost/smartbin_api'
+SECRET_KEY = 'Maha0508@#$'
 
+# Set the upload folder and allowed extensions for uploaded files
+app.config['UPLOAD_FOLDER'] = 'uploads'
+app.config['ALLOWED_EXTENSIONS'] = {'xlsx'}
 
 # Define the database URI
 app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = SECRET_KEY
 
-# Set the upload folder and allowed extensions for uploaded files
-app.config['UPLOAD_FOLDER'] = 'uploads'
-app.config['ALLOWED_EXTENSIONS'] = {'xlsx'}
-
-db = SQLAlchemy(app)
-
 # Initialize the SQLAlchemy db object with the Flask app
-db.init_app(app)
-
+db = SQLAlchemy(app)
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
