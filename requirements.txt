@@ -12,4 +12,3 @@ python-decouple
 flask_login
 flask_marshmallow
 pymysql
-mariadb
