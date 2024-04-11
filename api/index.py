@@ -25,10 +25,10 @@ bcrypt = Bcrypt(app)
 CORS(app)
 
 # Define environment variables
-DATABASE_URL=mysql+pymysql://root@localhost/smartbin_api
-APP_NAME=SMARTBIN
-DEVELOPER=JANARTHANAN
-SECRET_KEY=Maha0508@#$
+DATABASE_URL='mysql+pymysql://root@localhost/smartbin_api'
+APP_NAME='SMARTBIN'
+DEVELOPER='JANARTHANAN'
+SECRET_KEY='Maha0508@#$'
 
 
 # Define the database URI
