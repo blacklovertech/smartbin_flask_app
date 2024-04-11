@@ -4,10 +4,9 @@ import os
 from flask import abort, app,Flask, render_template, send_file, request, jsonify, send_from_directory,Blueprint,session
 from flask_cors import CORS
 import pandas as pd
-from sqlalchemy.orm import joinedload
+from sqlalchemy.orm import joinedload,relationship
 from sqlalchemy import func, and_,desc
 from flask_bcrypt import Bcrypt
-import model
 import secrets
 from werkzeug.utils import secure_filename
 import io
@@ -15,6 +14,9 @@ import openpyxl
 import mysql.connector
 from mysql.connector import Error
 from decouple import config
+from flask_sqlalchemy import SQLAlchemy
+import network
+import time
 
 
 app = Flask(__name__)
@@ -37,6 +39,40 @@ app.config['ALLOWED_EXTENSIONS'] = {'xlsx'}
 
 # Initialize the SQLAlchemy db object with the Flask app
 db.init_app(app)
+
+
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(80), unique=True)
+    email = db.Column(db.String(120), unique=True)
+    password = db.Column(db.String(60))
+    user_type = db.Column(db.String(60))
+    updated_at = db.Column(db.DateTime)
+    created_at = db.Column(db.DateTime)
+    last_active = db.Column(db.DateTime)
+    status = db.Column(db.String(30))
+    fname = db.Column(db.String(30))
+    lname = db.Column(db.String(30))
+    
+class BinConfig(db.Model):
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    binid = db.Column(db.BigInteger, unique=True, nullable=False)
+    partnumber = db.Column(db.BigInteger, nullable=False)
+    partdescription = db.Column(db.String(300), nullable=False)
+    partweight = db.Column(db.BigInteger, nullable=False)
+    binweight = db.Column(db.BigInteger, nullable=False)
+    bincapacity = db.Column(db.BigInteger, nullable=False)
+    minthresh = db.Column(db.Float, nullable=False)
+    midthresh = db.Column(db.Float, nullable=False)
+    
+
+class BinLog(db.Model):
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    binid = db.Column(db.BigInteger, nullable=False)
+    quantityavailable = db.Column(db.BigInteger, nullable=False)
+    batteryindicator = db.Column(db.String(300), nullable=False)
+    lastupdatetime = db.Column(db.DateTime, nullable=False)
+
 
 @app.errorhandler(400)
 def bad_request(e):
@@ -488,7 +524,6 @@ def create_database():
     # Create the database and tables
     with app.app_context():
         db.create_all()
-
 
 if __name__ == '__main__':
     app.run(debug=True,host='0.0.0.0')
