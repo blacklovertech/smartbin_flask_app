@@ -19,7 +19,7 @@ bcrypt = Bcrypt(app)
 
 CORS(app)
 username = 'm5002_smartbin'
-password = 'Smartbin@12'
+password = 'Smartbin12'
 hostname = 'mysql0.serv00.com'
 database_name = 'm5002_smartbin_api'
 
