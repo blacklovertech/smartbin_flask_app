@@ -14,9 +14,7 @@ import openpyxl
 import mysql.connector
 from mysql.connector import Error
 from flask_sqlalchemy import SQLAlchemy
-import network
-import time
-import os
+
 
 
 app = Flask(__name__)
